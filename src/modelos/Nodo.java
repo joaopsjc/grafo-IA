@@ -49,7 +49,10 @@ public class Nodo {
         Aresta novaAresta = new Aresta(peso, Heuristica, novoNodo);
         arestas.add(novaAresta);
     }
-    
+
+    public List<Aresta> getArestas() {
+        return arestas;
+    }    
     public boolean removeAresta(Nodo nodoRemover)
     {
         Iterator<Aresta> arestaAtual = arestas.iterator();
