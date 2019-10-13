@@ -5,20 +5,26 @@
  */
 package modelos;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-import com.sun.corba.se.impl.orbutil.graph.GraphImpl;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
  * @author Andre William
  */
 public class AEstrela {
-
-    public AEstrela() {
+    List<Nodo> abertos,fechados;
+    Grafo problema;
+    Grafo solucao;
+    public AEstrela(Grafo problema) {
+        abertos = new LinkedList<>();
+        fechados = new LinkedList<>();
+        this.problema = problema;
+        solucao = new Grafo();
     }
-    public void get()
+    public void solucionar(String nomeA, String nomeB)
     {
-        
+        Nodo nodoInicial = problema.getNodo(nomeA);
+        Nodo nodoFinal = problema.getNodo(nomeB);
     }
-    
 }

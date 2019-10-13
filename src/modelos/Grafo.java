@@ -120,7 +120,7 @@ public class Grafo {
             return true;
         }
     }
-    public List<Aresta> retornaArestas(String nome)
+    public List<Aresta> getArestas(String nome)
     {
         Iterator<Nodo> nodoAtual = nodos.iterator();
         while(nodoAtual.hasNext())
@@ -133,7 +133,7 @@ public class Grafo {
         }
         return null;
     }
-    public Nodo retornaNodo(String nome)
+    public Nodo getNodo(String nome)
     {
         Iterator<Nodo> nodoAtual = nodos.iterator();
         while(nodoAtual.hasNext())
@@ -146,7 +146,7 @@ public class Grafo {
         }
         return null;
     }
-    public List<Nodo> retornaListaNodo()
+    public List<Nodo> getListaNodo()
     {
         return nodos;
     }
