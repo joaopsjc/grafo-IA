@@ -146,4 +146,8 @@ public class Grafo {
         }
         return null;
     }
+    public List<Nodo> retornaListaNodo()
+    {
+        return nodos;
+    }
 }
