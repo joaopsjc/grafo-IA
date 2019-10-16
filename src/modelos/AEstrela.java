@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Andre William
+ * @author João Pedro de Souza Jardim da Costa
  */
 public class AEstrela {
     List<Aresta> abertos,fechados;
@@ -34,8 +34,8 @@ public class AEstrela {
             addFilhos(arestaMenor);//adiciona seus filhos a lista de abertos
             fechados.add(arestaMenor);//adiciona o elemento a lista de fechados
             abertos.remove(arestaMenor);//remove o elemento fechado da lista de abertos
-            arestaMenor.getNodo().setFechado(true);//sinlizador de que o elemento está na lista de fechados
-            arestaMenor.getNodo().setAberto(false);//sinlizador de que o elemento está na lista de fechados
+            arestaMenor.getNodo().setFechado(true);//sinaliza que o elemento está na lista de fechados
+            arestaMenor.getNodo().setAberto(false);//sinaliza que o elemento não está na lista de abertos
             arestaMenor = abertos.get(0);//pega o primeiro elemento da lista(o de menor custo)
         }
     }
@@ -63,7 +63,7 @@ public class AEstrela {
             if(!novaAresta.getNodo().isFechado() && !novaAresta.getNodo().isAberto() )
             {
                 abertos.add(posicaoAdicionar, novaAresta);
-                nodo.setAberto(true);
+                nodo.setAberto(true);//sinaliza que o elemento está na lista de abertos
             }
             // se o nó estiver na lista de aberto mas não está na lista de fechados
             else if(!novaAresta.getNodo().isFechado())

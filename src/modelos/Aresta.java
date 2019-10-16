@@ -7,7 +7,7 @@ package modelos;
 
 /**
  *
- * @author Andre William
+ * @author João Pedro de Souza Jardim da Costa
  */
 public class Aresta {
     int peso,heuristica;

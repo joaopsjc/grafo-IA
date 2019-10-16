@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author Andre William
+ * @author João Pedro de Souza Jardim da Costa
  */
 public class Grafo {
     List<Nodo> nodos;
