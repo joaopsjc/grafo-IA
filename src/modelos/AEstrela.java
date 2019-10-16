@@ -32,47 +32,88 @@ public class AEstrela {
         
         while(arestaMenor.getNodo() != nodoFinal)
         {
-            Aresta proximaAresta = addFilhos(arestaMenor);
-            fechados.add(arestaMenor);
-            arestaMenor.getNodo().setFechado(true);
-            arestaMenor = proximaAresta;
+            addFilhos(arestaMenor);//adiciona seus filhos a lista de abertos
+            fechados.add(arestaMenor);//adiciona o elemento a lista de fechados
+            abertos.remove(arestaMenor);//remove o elemento fechado da lista de abertos
+            arestaMenor.getNodo().setFechado(true);//sinlizador de que o elemento está na lista de fechados
+            arestaMenor = abertos.get(0);//pega o primeiro elemento da lista(o de menor custo)
         }
     }
-    //adiciona os nos filhos à lista de abertos
-    private Aresta addFilhos(Aresta arestaPai)
+    //adiciona os nos filhos à lista de abertos na ordem ascendente
+    private void addFilhos(Aresta arestaPai)
     {
+        //pega todas os nós aos quais ele está conectado
         List<Aresta> arestasFilhas = arestaPai.getNodo().getArestas();
-        Iterator<Aresta> aresta = arestasFilhas.iterator();
-        Aresta arestaMenor = null;
+        Iterator<Aresta> arestasIterator = arestasFilhas.iterator();
         
-        while(aresta.hasNext())
+        while(arestasIterator.hasNext())
         {
-            Aresta arestaAtual = aresta.next();
+            Aresta arestaAtual = arestasIterator.next();
             
+            
+            //cria nova aresta para lista de abertos
             int novoPeso = arestaAtual.getPeso() + arestaPai.getPeso();
             int heuristica = arestaAtual.getHeuristica();
             Nodo nodo = arestaAtual.getNodo();
             Aresta novaAresta = new Aresta(novoPeso, heuristica,nodo);
+ 
+            //pega posicao a qual ela será adicionada
+            int posicaoAdicionar = findPosition(novaAresta);
             
-            if(arestaMenor==null)
-            {
-                arestaMenor = novaAresta;
-            }
-            else if(arestaMenor.getPeso() + arestaMenor.getHeuristica() > novoPeso+heuristica)
-            {
-                arestaMenor = novaAresta;
-            }
-            
+            //se o nó não estiver na lista de fechados e não estiver na lista de abertos
             if(!novaAresta.getNodo().isFechado() && !novaAresta.getNodo().isAberto() )
             {
+                abertos.add(posicaoAdicionar, novaAresta);
                 nodo.setAberto(true);
-                abertos.add(novaAresta);
             }
-            else if(!novaAresta.getNodo().isFechado() && novaAresta.getNodo().isAberto())
+            // se o nó estiver na lista de aberto mas não está na lista de fechados
+            else if(!novaAresta.getNodo().isFechado())
+            //else if(!novaAresta.getNodo().isFechado() && novaAresta.getNodo().isAberto()) possuem a mesma funcionalidade neste contexto
             {
-                abertos.add(novaAresta);
+                int posicaoConcorrente = findEquals(novaAresta);
+                //se o no antigo está em uma posicao maior, significa que ele custa mais que o novo e precisa ser removido
+                //caso contrário, não faz nada
+                if(posicaoConcorrente > posicaoAdicionar)
+                {
+                    //deleta antiga(PRECISA REMOVER ANTES DE ADICIONAR, OU deletará o nó incorreto)
+                    abertos.remove(abertos.get(posicaoConcorrente));
+                    //adiciona nova aos abertos
+                    abertos.add(posicaoAdicionar, novaAresta);
+                }
             }
         }
-        return arestaMenor;
+    }
+    //acha a posição a qual o novo nó será adicionado
+    private int findPosition(Aresta novaAresta)
+    {
+        Iterator<Aresta> arestasIterator = abertos.iterator();
+        int posicaoAdicionar=0;
+        while(arestasIterator.hasNext())
+        {
+            Aresta arestaAtual = arestasIterator.next();
+            //se o nó atual tiver um custo menor e não for fechado
+            if(!arestaAtual.getNodo().isFechado() && (arestaAtual.getHeuristica()+arestaAtual.getPeso() > novaAresta.getHeuristica()+novaAresta.getPeso()))
+            {
+                break;
+            }
+            posicaoAdicionar++;
+        }
+        return posicaoAdicionar;
+    }
+    //acha a posição repetida para escolher qual podar
+    private int findEquals(Aresta novaAresta)
+    {
+        Iterator<Aresta> arestasIterator = abertos.iterator();
+        int posicaoAdicionar=0;
+        while(arestasIterator.hasNext())
+        {
+            Aresta arestaAtual = arestasIterator.next();
+            if(arestaAtual.getNodo().equals(novaAresta.getNodo()))
+            {
+                break;
+            }
+            posicaoAdicionar++;
+        }
+        return posicaoAdicionar;
     }
 }
