@@ -10,12 +10,17 @@ package modelos;
  * @author João Pedro de Souza Jardim da Costa
  */
 public class Aresta {
-    int peso,heuristica;
+    int peso;
     Nodo nodo;
+    String caminho;
 
-    public Aresta(int peso, Nodo nodo) {
+    public Aresta(int peso, Nodo nodo, String caminho) {
         this.peso = peso;
         this.nodo = nodo;
+    }
+
+    public String getCaminho() {
+        return caminho;
     }
 
     public int getPeso() {

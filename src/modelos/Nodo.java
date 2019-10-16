@@ -52,7 +52,7 @@ public class Nodo {
     }
     public void addAresta(Nodo novoNodo,int peso)
     {
-        Aresta novaAresta = new Aresta(peso,novoNodo);
+        Aresta novaAresta = new Aresta(peso,novoNodo,"");
         arestas.add(novaAresta);
     }
 
