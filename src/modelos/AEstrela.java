@@ -41,7 +41,7 @@ public class AEstrela {
                 arestaMenor.getNodo().setAberto(false);//sinaliza que o elemento não está na lista de abertos
                 arestaMenor = abertos.get(0);//pega o primeiro elemento da lista(o de menor custo)
             }
-            System.out.println(arestaMenor.getCaminho());''
+            System.out.println(arestaMenor.getCaminho());
         }
         else
         {
