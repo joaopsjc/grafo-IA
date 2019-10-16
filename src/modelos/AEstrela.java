@@ -39,6 +39,7 @@ public class AEstrela {
             arestaMenor = abertos.get(0);//pega o primeiro elemento da lista(o de menor custo)
         }
     }
+    
     //adiciona os nos filhos à lista de abertos na ordem ascendente
     private void addFilhos(Aresta arestaPai)
     {
