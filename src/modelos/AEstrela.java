@@ -26,9 +26,8 @@ public class AEstrela {
     {
         Nodo nodoInicial = problema.getNodo(nomeA);
         Nodo nodoFinal = problema.getNodo(nomeB);
-        Aresta arestaMenor = new Aresta(0, 0, nodoInicial);
-        abertos.add(arestaMenor);
-        //Iterator<Aresta> abertosIterator = abertos.iterator();
+        Aresta arestaMenor = new Aresta(0, nodoInicial);
+        abertos.add(arestaMenor);//adiciona o inicial a lista de abertos
         
         while(arestaMenor.getNodo() != nodoFinal)
         {
@@ -36,6 +35,7 @@ public class AEstrela {
             fechados.add(arestaMenor);//adiciona o elemento a lista de fechados
             abertos.remove(arestaMenor);//remove o elemento fechado da lista de abertos
             arestaMenor.getNodo().setFechado(true);//sinlizador de que o elemento está na lista de fechados
+            arestaMenor.getNodo().setAberto(false);//sinlizador de que o elemento está na lista de fechados
             arestaMenor = abertos.get(0);//pega o primeiro elemento da lista(o de menor custo)
         }
     }
@@ -52,10 +52,9 @@ public class AEstrela {
             
             
             //cria nova aresta para lista de abertos
-            int novoPeso = arestaAtual.getPeso() + arestaPai.getPeso();
-            int heuristica = arestaAtual.getHeuristica();
+            int novoPeso = arestaAtual.getPeso() + arestaPai.getPeso();// peso é igual ao pesso do pai + o do filho
             Nodo nodo = arestaAtual.getNodo();
-            Aresta novaAresta = new Aresta(novoPeso, heuristica,nodo);
+            Aresta novaAresta = new Aresta(novoPeso,nodo);
  
             //pega posicao a qual ela será adicionada
             int posicaoAdicionar = findPosition(novaAresta);
@@ -92,7 +91,7 @@ public class AEstrela {
         {
             Aresta arestaAtual = arestasIterator.next();
             //se o nó atual tiver um custo menor e não for fechado
-            if(!arestaAtual.getNodo().isFechado() && (arestaAtual.getHeuristica()+arestaAtual.getPeso() > novaAresta.getHeuristica()+novaAresta.getPeso()))
+            if(!arestaAtual.getNodo().isFechado() && (arestaAtual.getNodo().getHeuristica()+arestaAtual.getPeso() > novaAresta.getNodo().getHeuristica()+novaAresta.getPeso()))
             {
                 break;
             }

@@ -14,12 +14,14 @@ import java.util.List;
  * @author Andre William
  */
 public class Nodo {
+    int heuristica;
     String nome;
     boolean aberto, fechado;
     List<Aresta> arestas;
     
-    public Nodo(String nome) {
+    public Nodo(String nome, int heuristica) {
         this.nome = nome;
+        this.heuristica = heuristica;
         aberto = false;
         fechado = false;
         arestas = new LinkedList<>();
@@ -37,6 +39,10 @@ public class Nodo {
         return nome;
     }
 
+    public int getHeuristica() {
+        return heuristica;
+    }
+
     public void setAberto(boolean aberto) {
         this.aberto = aberto;
     }
@@ -44,9 +50,9 @@ public class Nodo {
     public void setFechado(boolean fechado) {
         this.fechado = fechado;
     }
-    public void addAresta(Nodo novoNodo,int peso, int Heuristica)
+    public void addAresta(Nodo novoNodo,int peso)
     {
-        Aresta novaAresta = new Aresta(peso, Heuristica, novoNodo);
+        Aresta novaAresta = new Aresta(peso,novoNodo);
         arestas.add(novaAresta);
     }
 

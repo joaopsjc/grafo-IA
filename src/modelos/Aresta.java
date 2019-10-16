@@ -13,12 +13,6 @@ public class Aresta {
     int peso,heuristica;
     Nodo nodo;
 
-    public Aresta(int peso, int heuristica, Nodo nodo) {
-        this.peso = peso;
-        this.heuristica = heuristica;
-        this.nodo = nodo;
-    }
-
     public Aresta(int peso, Nodo nodo) {
         this.peso = peso;
         this.nodo = nodo;
@@ -26,10 +20,6 @@ public class Aresta {
 
     public int getPeso() {
         return peso;
-    }
-
-    public int getHeuristica() {
-        return heuristica;
     }
 
     public Nodo getNodo() {

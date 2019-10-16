@@ -21,7 +21,7 @@ public class Grafo {
         nodos = new LinkedList<>();
         quantNodos =0;
     }
-    public boolean addNodo(String nome)
+    public boolean addNodo(String nome, int heuristica)
     {
         Iterator<Nodo> nodoAtual = nodos.iterator();
         while(nodoAtual.hasNext())
@@ -33,7 +33,7 @@ public class Grafo {
             }
         }
         quantNodos++;
-        nodos.add(new Nodo(nome));
+        nodos.add(new Nodo(nome,heuristica));
         return true;
     }
     public boolean removeNodo(String nome)
@@ -84,13 +84,13 @@ public class Grafo {
                 nodoB = nodo;
             }
         }
-        if(nodoA==null||nodoB==null)
+        if(nodoA==null||nodoB==null)//se um dos dois nodos não existem, retorna que a operação foi incorreta
         {
             return false;
         }
         else
         {
-            nodoA.addAresta(nodoB, peso, Heuristica);
+            nodoA.addAresta(nodoB, peso);
             return true;
         }
     }
