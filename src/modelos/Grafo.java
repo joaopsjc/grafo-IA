@@ -180,6 +180,7 @@ public class Grafo {
     public void imprimeGrafo()
     {
         Iterator<Nodo> nodosIterator = nodos.iterator();
+        System.out.println("Grafo:");
         while(nodosIterator.hasNext())
         {
             Nodo nodoAtual = nodosIterator.next();
@@ -187,5 +188,6 @@ public class Grafo {
             System.out.print(nodoAtual.getNome() + "(h=" + heuristica + ")" );
             nodoAtual.imprimeArestas();
         }
+        System.out.print('\n');
     }
 }

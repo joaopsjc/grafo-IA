@@ -45,7 +45,7 @@ public class AEstrela {
             if(arestaMenor.getNodo().getNome().equals(nomeB))
             {
                 tempoFinal = System.nanoTime();
-                System.out.println(arestaMenor.getCaminho());
+                System.out.println("Solução:" + arestaMenor.getCaminho());
                 System.out.println("Solução encontrada em: " + (tempoFinal - tempoInicial) + "ns");
             }
             else
