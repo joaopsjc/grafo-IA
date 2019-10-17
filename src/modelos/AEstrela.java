@@ -41,7 +41,14 @@ public class AEstrela {
                 arestaMenor.getNodo().setAberto(false);//sinaliza que o elemento não está na lista de abertos
                 arestaMenor = abertos.get(0);//pega o primeiro elemento da lista(o de menor custo)
             }
-            System.out.println(arestaMenor.getCaminho());
+            if(!arestaMenor.getNodo().getNome().equals(nomeB))
+            {
+                System.out.println(arestaMenor.getCaminho());
+            }
+            else
+            {
+                System.out.println("Não há conexão entre os dois nós");
+            }
         }
         else
         {
