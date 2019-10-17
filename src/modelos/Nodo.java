@@ -94,7 +94,8 @@ public class Nodo {
             Aresta arestaAtual = arestasIterator.next();
             String nome = arestaAtual.getNodo().getNome();
             int peso = arestaAtual.getPeso();
-            System.out.println(" >> " + nome + "(f=" + peso + ")" );
+            System.out.print(" >> " + nome + "(g=" + peso + ")" );
         }
+        System.out.print('\n');
     }
 }

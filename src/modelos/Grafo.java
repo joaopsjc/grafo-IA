@@ -68,7 +68,7 @@ public class Grafo {
         
     }
 
-    public boolean addArestaUnica(String nomeA,String nomeB, int peso, int Heuristica)
+    public boolean addArestaUnica(String nomeA,String nomeB, int peso)
     {
         Iterator<Nodo> nodosIterator = nodos.iterator();
         Nodo nodoA=null,nodoB=null;
@@ -94,7 +94,7 @@ public class Grafo {
             return true;
         }
     }
-     public boolean addArestaDupla(String nomeA,String nomeB, int peso, int Heuristica)
+     public boolean addArestaDupla(String nomeA,String nomeB, int peso)
     {
         Iterator<Nodo> nodosIterator = nodos.iterator();
         Nodo nodoA=null,nodoB=null;
@@ -184,7 +184,7 @@ public class Grafo {
         {
             Nodo nodoAtual = nodosIterator.next();
             int heuristica = nodoAtual.getHeuristica();
-            System.out.println(nodoAtual.getNome() + "(h=" + heuristica + ")" );
+            System.out.print(nodoAtual.getNome() + "(h=" + heuristica + ")" );
             nodoAtual.imprimeArestas();
         }
     }

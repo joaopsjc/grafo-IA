@@ -17,6 +17,7 @@ public class Aresta {
     public Aresta(int peso, Nodo nodo, String caminho) {
         this.peso = peso;
         this.nodo = nodo;
+        this.caminho = caminho;
     }
 
     public String getCaminho() {
