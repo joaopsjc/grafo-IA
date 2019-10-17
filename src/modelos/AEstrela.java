@@ -27,6 +27,7 @@ public class AEstrela {
     }
 
     public void solucionar(String nomeA, String nomeB) {
+        long tempoInicial= System.nanoTime(),tempoFinal;
         Nodo nodoInicial = problema.getNodo(nomeA);
         Nodo nodoFinal = problema.getNodo(nomeB);
         if (nodoInicial != null && nodoFinal != null) {
@@ -43,7 +44,9 @@ public class AEstrela {
             }
             if(!arestaMenor.getNodo().getNome().equals(nomeB))
             {
+                tempoFinal = System.nanoTime();
                 System.out.println(arestaMenor.getCaminho());
+                System.out.println("Solução encontrada em: " + (tempoInicial - tempoFinal) + "s");
             }
             else
             {
