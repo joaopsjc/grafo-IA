@@ -42,11 +42,11 @@ public class AEstrela {
                 arestaMenor.getNodo().setAberto(false);//sinaliza que o elemento não está na lista de abertos
                 arestaMenor = abertos.get(0);//pega o primeiro elemento da lista(o de menor custo)
             }
-            if(!arestaMenor.getNodo().getNome().equals(nomeB))
+            if(arestaMenor.getNodo().getNome().equals(nomeB))
             {
                 tempoFinal = System.nanoTime();
                 System.out.println(arestaMenor.getCaminho());
-                System.out.println("Solução encontrada em: " + (tempoInicial - tempoFinal) + "s");
+                System.out.println("Solução encontrada em: " + (tempoFinal - tempoInicial) + "ns");
             }
             else
             {
@@ -55,7 +55,7 @@ public class AEstrela {
         }
         else
         {
-            System.out.println("Um dos nós selecionados não existe");
+            System.out.println("Um dos nós fornecidos não existe");
         }
     }
 
