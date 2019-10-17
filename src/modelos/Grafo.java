@@ -23,11 +23,11 @@ public class Grafo {
     }
     public boolean addNodo(String nome, int heuristica)
     {
-        Iterator<Nodo> nodoAtual = nodos.iterator();
-        while(nodoAtual.hasNext())
+        Iterator<Nodo> nodosIterator = nodos.iterator();
+        while(nodosIterator.hasNext())
         {
-            Nodo nodo = nodoAtual.next();
-            if(nome.equals(nodo.getNome()))
+            Nodo nodoAtual = nodosIterator.next();
+            if(nome.equals(nodoAtual.getNome()))
             {
                 return false;
             }
@@ -38,15 +38,15 @@ public class Grafo {
     }
     public boolean removeNodo(String nome)
     {
-        Iterator<Nodo> nodoAtual = nodos.iterator();
+        Iterator<Nodo> nodosIterator = nodos.iterator();
         Nodo nodoRemover=null;
-        while(nodoAtual.hasNext())
+        while(nodosIterator.hasNext())
         {
-            Nodo nodo = nodoAtual.next();
+            Nodo nodoAtual = nodosIterator.next();
             
-            if(nome.equals(nodo.getNome()))
+            if(nome.equals(nodoAtual.getNome()))
             {
-                nodoRemover = nodo;
+                nodoRemover = nodoAtual;
             }
         }
         if(nodoRemover==null)
@@ -55,11 +55,11 @@ public class Grafo {
         }
         else
         {
-            nodoAtual = nodos.iterator();
-            while(nodoAtual.hasNext())
+            nodosIterator = nodos.iterator();
+            while(nodosIterator.hasNext())
             {
-                Nodo nodo = nodoAtual.next();
-                nodo.removeAresta(nodoRemover);
+                Nodo nodoAtual = nodosIterator.next();
+                nodoAtual.removeAresta(nodoRemover);
             }
             quantNodos--;
             nodos.remove(nodoRemover);
@@ -68,20 +68,20 @@ public class Grafo {
         
     }
 
-    public boolean addAresta(String nomeA,String nomeB, int peso, int Heuristica)
+    public boolean addArestaUnica(String nomeA,String nomeB, int peso, int Heuristica)
     {
-        Iterator<Nodo> nodoAtual = nodos.iterator();
+        Iterator<Nodo> nodosIterator = nodos.iterator();
         Nodo nodoA=null,nodoB=null;
-        while(nodoAtual.hasNext())
+        while(nodosIterator.hasNext())
         {
-            Nodo nodo = nodoAtual.next();
-            if(nomeA.equals(nodo.getNome()))
+            Nodo nodoAtual = nodosIterator.next();
+            if(nomeA.equals(nodoAtual.getNome()))
             {
-                nodoA = nodo;
+                nodoA = nodoAtual;
             }
-            else if(nomeB.equals(nodo.getNome()))
+            else if(nomeB.equals(nodoAtual.getNome()))
             {
-                nodoB = nodo;
+                nodoB = nodoAtual;
             }
         }
         if(nodoA==null||nodoB==null)//se um dos dois nodos não existem, retorna que a operação foi incorreta
@@ -94,20 +94,47 @@ public class Grafo {
             return true;
         }
     }
+     public boolean addArestaDupla(String nomeA,String nomeB, int peso, int Heuristica)
+    {
+        Iterator<Nodo> nodosIterator = nodos.iterator();
+        Nodo nodoA=null,nodoB=null;
+        while(nodosIterator.hasNext())
+        {
+            Nodo nodoAtual = nodosIterator.next();
+            if(nomeA.equals(nodoAtual.getNome()))
+            {
+                nodoA = nodoAtual;
+            }
+            else if(nomeB.equals(nodoAtual.getNome()))
+            {
+                nodoB = nodoAtual;
+            }
+        }
+        if(nodoA==null||nodoB==null)//se um dos dois nodos não existem, retorna que a operação foi incorreta
+        {
+            return false;
+        }
+        else
+        {
+            nodoA.addAresta(nodoB, peso);
+            nodoB.addAresta(nodoA, peso);
+            return true;
+        }
+    }
     public boolean removeAresta(String nomeA,String nomeB)
     {
-        Iterator<Nodo> nodoAtual = nodos.iterator();
+        Iterator<Nodo> nodosIterator = nodos.iterator();
         Nodo nodoA=null,nodoB=null;
-        while(nodoAtual.hasNext())
+        while(nodosIterator.hasNext())
         {
-            Nodo nodo = nodoAtual.next();
-            if(nomeA.equals(nodo.getNome()))
+            Nodo nodoAtual = nodosIterator.next();
+            if(nomeA.equals(nodoAtual.getNome()))
             {
-                nodoA = nodo;
+                nodoA = nodoAtual;
             }
-            else if(nomeB.equals(nodo.getNome()))
+            else if(nomeB.equals(nodoAtual.getNome()))
             {
-                nodoB = nodo;
+                nodoB = nodoAtual;
             }
         }
         if(nodoA==null||nodoB==null)
@@ -122,26 +149,26 @@ public class Grafo {
     }
     public List<Aresta> getArestas(String nome)
     {
-        Iterator<Nodo> nodoAtual = nodos.iterator();
-        while(nodoAtual.hasNext())
+        Iterator<Nodo> nodosIterator = nodos.iterator();
+        while(nodosIterator.hasNext())
         {
-            Nodo nodo = nodoAtual.next();
-            if(nome.equals(nodo.getNome()))
+            Nodo nodoAtual = nodosIterator.next();
+            if(nome.equals(nodoAtual.getNome()))
             {
-                return nodo.getArestas();
+                return nodoAtual.getArestas();
             }
         }
         return null;
     }
     public Nodo getNodo(String nome)
     {
-        Iterator<Nodo> nodoAtual = nodos.iterator();
-        while(nodoAtual.hasNext())
+        Iterator<Nodo> nodosIterator = nodos.iterator();
+        while(nodosIterator.hasNext())
         {
-            Nodo nodo = nodoAtual.next();
-            if(nome.equals(nodo.getNome()))
+            Nodo nodoAtual = nodosIterator.next();
+            if(nome.equals(nodoAtual.getNome()))
             {
-                return nodo;
+                return nodoAtual;
             }
         }
         return null;
@@ -149,5 +176,16 @@ public class Grafo {
     public List<Nodo> getListaNodo()
     {
         return nodos;
+    }
+    public void imprimeGrafo()
+    {
+        Iterator<Nodo> nodosIterator = nodos.iterator();
+        while(nodosIterator.hasNext())
+        {
+            Nodo nodoAtual = nodosIterator.next();
+            int heuristica = nodoAtual.getHeuristica();
+            System.out.println(nodoAtual.getNome() + "(h=" + heuristica + ")" );
+            nodoAtual.imprimeArestas();
+        }
     }
 }

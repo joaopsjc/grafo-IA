@@ -61,10 +61,10 @@ public class Nodo {
     }    
     public boolean removeAresta(Nodo nodoRemover)
     {
-        Iterator<Aresta> arestaAtual = arestas.iterator();
-        while(arestaAtual.hasNext())
+        Iterator<Aresta> arestasIterator = arestas.iterator();
+        while(arestasIterator.hasNext())
         {
-            Aresta aresta = arestaAtual.next();
+            Aresta aresta = arestasIterator.next();
             if(nodoRemover.equals(aresta.getNodo()))
             {
                 arestas.remove(aresta);
@@ -75,15 +75,26 @@ public class Nodo {
     }
     public boolean containsAresta(Nodo nodoContido)
     {
-        Iterator<Aresta> arestaAtual = arestas.iterator();
-        while(arestaAtual.hasNext())
+        Iterator<Aresta> arestasIterator = arestas.iterator();
+        while(arestasIterator.hasNext())
         {
-            Aresta aresta = arestaAtual.next();
-            if(nodoContido.equals(aresta.getNodo()))
+            Aresta arestaAtual = arestasIterator.next();
+            if(nodoContido.equals(arestaAtual.getNodo()))
             {
                 return true;
             }
         }
         return false;
+    }
+    public void imprimeArestas()
+    {
+        Iterator<Aresta> arestasIterator = arestas.iterator();
+        while(arestasIterator.hasNext())
+        {
+            Aresta arestaAtual = arestasIterator.next();
+            String nome = arestaAtual.getNodo().getNome();
+            int peso = arestaAtual.getPeso();
+            System.out.println(" >> " + nome + "(f=" + peso + ")" );
+        }
     }
 }
